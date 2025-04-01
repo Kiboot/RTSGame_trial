@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpelxpdwwb27g"]
+
+[ext_resource type="PackedScene" uid="uid://bhubit4uiqqjc" path="res://rts/scenes/unit.tscn" id="1_5dbbi"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uka7r"]
+vertices = PackedVector2Array(114, 95, 192, 110, 4, 110, 99, 78, 4, 2, 99, 32, 192, 3, 113, 19)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4), PackedInt32Array(5, 3, 4), PackedInt32Array(6, 1, 0, 7), PackedInt32Array(4, 6, 7), PackedInt32Array(4, 7, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(99, 32, 113, 19, 114, 95, 99, 78), PackedVector2Array(4, 2, 4, 110, 192, 110, 192, 3)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[node name="Unit" parent="." instance=ExtResource("1_5dbbi")]
+position = Vector2(16, 23)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_uka7r")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(103, 61)
+zoom = Vector2(4, 4)

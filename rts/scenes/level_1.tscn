@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://digovkd5lubo6"]
+
+[ext_resource type="PackedScene" uid="uid://bkhx23i4n0lh1" path="res://rts/scenes/tile_map.tscn" id="1_jweg4"]
+[ext_resource type="PackedScene" uid="uid://bhubit4uiqqjc" path="res://rts/scenes/unit.tscn" id="2_o5dee"]
+[ext_resource type="PackedScene" uid="uid://c3fqhnsnkulq0" path="res://rts/scenes/playerunit.tscn" id="3_mejld"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_q8yua"]
+vertices = PackedVector2Array(0, -128, 0, -64, -16, -64, -128, -128, -128, 65, -16, -16, 0, 65, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5), PackedInt32Array(6, 4, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-128, 65, 0, 65, 0, -16, -16, -16, -16, -64, 0, -64, 0, -128, -128, -128)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5tlvx"]
+vertices = PackedVector2Array(128, 64, 0, 65, 0, -16, 16, -16, 128, -128, 16, -64, 0, -128, 0, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 65, 128, 64, 128, -128, 0, -128, 0, -64, 16, -64, 16, -16, 0, -16)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[node name="Level1" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_jweg4")]
+
+[node name="Unit" parent="." instance=ExtResource("2_o5dee")]
+position = Vector2(-107, -80)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_q8yua")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="NavigationRegion2D"]
+navigation_polygon = SubResource("NavigationPolygon_5tlvx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, -40)
+zoom = Vector2(2.7, 2.7)
+
+[node name="PlayerUnit" parent="." instance=ExtResource("3_mejld")]
+position = Vector2(-68, -32)
